@@ -1,6 +1,8 @@
 export * from './products/product-grid/ProductGrid';
 export * from './products/product-grid/ProductGridItem';
 
+export * from './product/slideshow/ProductSlideshow';
+
 export * from './product/quantity-selector/QuantitySelector';
 
 export * from './ui/top-menu/TopMenu';

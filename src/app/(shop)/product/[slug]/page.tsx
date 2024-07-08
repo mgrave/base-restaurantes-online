@@ -1,4 +1,4 @@
-import { ProductSlideshow, QuantitySelector } from "@/components";
+import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
@@ -25,7 +25,21 @@ if (!product){
         <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
            {/* Slideshow*/}
            <div className="col-span-1 md:col-span-2 ">
-            <ProductSlideshow title={product.title} images={product.images}>
+
+            {/* Mobile Slideshow */}
+            <ProductMobileSlideshow
+            title={product.title}
+            images={product.images}
+               //en pantallas medianas va a estar oculto
+            className="block md:hidden"
+            ></ProductMobileSlideshow>
+
+            {/* Desktop Slideshow */}
+            <ProductSlideshow 
+            title={product.title} 
+            images={product.images}
+             className="hidden md:block"
+            >
             </ProductSlideshow>
            </div>
 

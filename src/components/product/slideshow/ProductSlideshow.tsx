@@ -1,7 +1,21 @@
 'use client'
 
+import { useState } from 'react';
+
+//este swiper solo va a ser parte del tipado
+import {Swiper as SwiperObject} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+
+
+import Image from "next/image";
+// Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+
+import './slideshow.css';
 
 interface Props {
     images: string[];
@@ -12,21 +26,43 @@ interface Props {
 
 export const ProductSlideshow = ({images, title, className }:Props) => {
 
+    const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObject>();
+
   return (
     <div className={className}>
 
-    <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      ...
-    </Swiper>
+<Swiper
+        style={{
+          '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        } as React.CSSProperties
+    } 
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper2"
+      >
+         {
+            images.map(image => (
+
+                <SwiperSlide key={image}>
+    {/*este image tiene que ser imporatdo de next/image  */}
+                <Image 
+                width={1024}
+                height={800}
+                src={`/products/${image}`}
+                alt={title}
+                className="rounded-lg object-fill"
+                priority={true}
+                >
+                </Image>
+                    
+                </SwiperSlide>
+
+            ))
+        }
+      </Swiper>
     </div>
   )
 }

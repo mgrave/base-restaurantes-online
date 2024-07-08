@@ -39,7 +39,9 @@ export const ProductSlideshow = ({images, title, className }:Props) => {
     } 
         spaceBetween={10}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        thumbs={{ 
+            swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null
+        }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
@@ -55,6 +57,35 @@ export const ProductSlideshow = ({images, title, className }:Props) => {
                 alt={title}
                 className="rounded-lg object-fill"
                 priority={true}
+                >
+                </Image>
+                    
+                </SwiperSlide>
+
+            ))
+        }
+      </Swiper>
+      {/* segundo swiper */}
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper"
+      >
+         {
+            images.map(image => (
+
+                <SwiperSlide key={image}>
+    {/*este image tiene que ser imporatdo de next/image  */}
+                <Image 
+                width={300}
+                height={300}
+                src={`/products/${image}`}
+                alt={title}
+                className="rounded-lg object-fill"
                 >
                 </Image>
                     

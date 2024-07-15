@@ -15,6 +15,7 @@ export const getPaginatedProductsWithImages = async ({
         if (isNaN(Number(page))) page = 1;
         if (page < 1 ) page = 1;
     try {
+        //paso 1: Obtener los productos
         const products = await prisma.product.findMany({
             take: take,
             skip: (page - 1 ) * take,
@@ -27,10 +28,16 @@ export const getPaginatedProductsWithImages = async ({
                 }
             }
         })
-
+        //paso 2: Obtener el total de paginas
+        //TODO: 
+        const totalCount = await prisma.product.count({})
+        //para sacar el total de paginas
+        const totalPages = Math.ceil(totalCount / take);
     
         //ahora regresamos un objeto
         return {
+            currentPage: page,
+            totalPages: totalPages,
             products: products.map(product => ({
                 ...product,
                 images: product.ProductImage.map(image => image.url)

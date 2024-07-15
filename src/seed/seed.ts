@@ -15,6 +15,7 @@ type ValidSizes = 'S'|'M'|'L';
 type ValidTypes = 'fish'|'shrimp'|'octopus'|'oysters'|'side'|'appetizers'|'crab'|'seafood';
 
 interface SeedData {
+    categories: string[],
     products: SeedProduct[],
 }
 
@@ -22,6 +23,11 @@ interface SeedData {
 
 
 export const initialData: SeedData = {
+
+    categories: [
+        'Fish','Shrimp','Octopus','Oysters','Side','Appetizers','Crab','Seafood'
+    ],
+
     products: [
         {
             description: "Minim deserunt labore velit labore voluptate elit enim do excepteur magna tempor labore ea incididunt. Do in voluptate qui excepteur nisi reprehenderit laboris ex. Sint irure cillum eiusmod anim ut irure ipsum cillum nisi voluptate enim aliqua. In commodo aute enim reprehenderit aliquip veniam est minim. Ullamco sunt non ut et incididunt. Cupidatat eiusmod pariatur commodo consectetur nulla Lorem ullamco veniam irure consequat. Amet mollit labore cillum consectetur quis.",

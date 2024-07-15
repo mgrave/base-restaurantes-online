@@ -4,9 +4,9 @@ import { initialData } from './seed';
 async function main() {
 
     await Promise.all([
-        prisma.product.deleteMany(),
-        prisma.productImage.deleteMany(),
-        prisma.category.deleteMany()
+        await prisma.product.deleteMany(),
+        await prisma.productImage.deleteMany(),
+        await prisma.category.deleteMany()
 
     ]);
 
@@ -49,7 +49,18 @@ async function main() {
                 categoryId: categoriesMap[type]
             }
         })
+        
+          //Images
+          const imagesData = images.map(image => ({
+            url: image,
+            productId: dbProduct.id
+        }));
 
+        //aqui lo insertamos
+        await prisma.productImage.createMany({
+            data: imagesData
+        });
+       
        
     });
     

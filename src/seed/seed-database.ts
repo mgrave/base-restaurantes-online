@@ -4,8 +4,8 @@ import { initialData } from './seed';
 async function main() {
 
     await Promise.all([
-        prisma.productImage.deleteMany(),
         prisma.product.deleteMany(),
+        prisma.productImage.deleteMany(),
         prisma.category.deleteMany()
 
     ]);
@@ -37,6 +37,21 @@ async function main() {
          return map;
      }, {} as Record<string, string>) //<string=shirt, string=categoryID> 
      console.log(categoriesMap);
+
+     //productos
+
+    products.forEach(async(product) => {
+        const {type, images, ...rest} = product;
+
+        const dbProduct = await prisma.product.create({
+            data: {
+                ...rest,
+                categoryId: categoriesMap[type]
+            }
+        })
+
+       
+    });
     
 
     console.log('Seed se ejecuto correctamente');

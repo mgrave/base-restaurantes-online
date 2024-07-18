@@ -25,13 +25,13 @@ export const TopMenu = () => {
     {/* Center Menu */}
     {/* hidden sm: block sirve en este caso para ocultar las categorias en pantallas chicas como los telefonos */}
     <div className='hidden sm:block'> 
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/specialities'>Specialities</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/ceviche'>Ceviche</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/cocktail'>Cocktail</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/kid'>Kids</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/soup'>Soup</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/sides'>Sides</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/category/botanas'>Botanas</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/specialities'>Specialities</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/ceviche'>Ceviche</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/cocktail'>Cocktail</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/kid'>Kids</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/soup'>Soup</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/sides'>Sides</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href='/gender/botanas'>Botanas</Link>
     </div>
 
     {/* Search, Cart, Menu */}

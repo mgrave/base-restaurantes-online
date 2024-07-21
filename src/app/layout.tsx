@@ -6,7 +6,10 @@ import { inter } from "@/config/fonts";
 
 
 export const metadata: Metadata = {
-  title: "Jarocho",
+  title: {
+    template: '%s - Jarocho Restaurant',
+    default: 'Home'
+  },
   description: "Restaurant de mariscos",
 };
 

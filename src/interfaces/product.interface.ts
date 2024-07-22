@@ -1,3 +1,4 @@
+
 export interface Product {
     id: string;
     description: string;
@@ -10,6 +11,16 @@ export interface Product {
     title: string;
     //type: Type;
     gender: Category;
+}
+
+export interface CartProduct {
+    id: string;
+    slug: string;
+    title: string;
+    price: number;
+    quantity: number;
+    image: string;
+    size?: Size;
 }
 
 export type Category = 'specialities'|'kid'|'ceviche'|'cocktail'|'soup'|'sides'|'botanas';

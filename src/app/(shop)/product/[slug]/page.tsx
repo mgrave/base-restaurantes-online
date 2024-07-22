@@ -82,7 +82,7 @@ if (!product){
 
             <p className="text-lg mb-5">${product.price}</p>
           
-            <AddToCart></AddToCart>
+            <AddToCart product={product}></AddToCart>
            
             {/* Descripcion */}
             <h3 className="font-bold text-sm">Descripción</h3>

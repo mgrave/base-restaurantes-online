@@ -9,6 +9,7 @@ interface State {
     //addProductToCart
     addProductTocart: (product: CartProduct) => void;
     //updateProductQuantity
+    updateProductQuantity: (product: CartProduct, quantity: number) => void;
     //removeProduct
 }
 
@@ -42,6 +43,7 @@ export const useCartStore = create<State>()(
                 return;
             }
             
+            
             const updateCartProducts = cart.map((item)=> {
                 //este es el articulo que yo quiero actualizar
                 if (item.id === product.id){
@@ -53,6 +55,18 @@ export const useCartStore = create<State>()(
             });
             set({cart: updateCartProducts});
           
+        },
+        updateProductQuantity: (product: CartProduct, quantity: number) => {
+            const {cart} = get();
+
+                const updateCartProducts = cart.map( item => {
+                    if(item.id === product.id){
+                        return {...item, quantity: quantity};
+                    }
+                     //si ese no es el articulo, entonces que lo regrese para no hacerle modificaciones
+                     return item;
+                });
+                set({cart: updateCartProducts});
         }
     
        

@@ -27,6 +27,7 @@ export const AddToCart = ({product}:Props) => {
      // agregar al carrito
     addProductToCart(cartProduct);
       setQuantity(1);
+      //TODO: Agregar un modal o dailog para que el cliente sepa que su producto fue agregado al carrito
       console.log('aqui ya esta en el carrito' ,cartProduct);
     }
     

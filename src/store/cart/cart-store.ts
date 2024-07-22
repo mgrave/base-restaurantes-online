@@ -5,7 +5,7 @@ import { persist } from "zustand/middleware";
 interface State {
     cart: CartProduct[];
     //metodos para modificar el carrito de compras
-
+    getTotalItems: () => number;
     //addProductToCart
     addProductTocart: (product: CartProduct) => void;
     //updateProductQuantity
@@ -18,7 +18,12 @@ export const useCartStore = create<State>()(
     (set,get) => ({
 
         cart: [],
-            
+        //methods
+        getTotalItems: () => {
+            const {cart} = get();
+            //tenemos que barrer todos nuestros elementos
+            return cart.reduce((total, item) => total + item.quantity, 0);
+        },
         addProductTocart: (product: CartProduct) => {
     
             const {cart} = get();

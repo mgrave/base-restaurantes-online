@@ -1,6 +1,8 @@
 import NextAuth, { type NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import {z} from 'zod';
+import prisma from './lib/prisma';
+import bcryptjs from 'bcryptjs';
  
 export const authConfig: NextAuthConfig = {
     pages: {
@@ -14,19 +16,23 @@ export const authConfig: NextAuthConfig = {
                 .object({ email: z.string().email(), password: z.string().min(6) })
                 .safeParse(credentials);
 
-                console.log(parsedCredentials.success);
                 if (!parsedCredentials.success) return null;
 
                 const {email, password} = parsedCredentials.data;
-                console.log('AuthConfig.ts');
+               //Buscar el correo
+               const user = await prisma.user.findUnique({where: {email: email.toLocaleLowerCase()}})
 
-                console.log({email, password});
+               if  (!user) return null;
 
-                //Buscar el correo
+               //Comparar las contrasenas
+               if (!bcryptjs.compareSync(password, user.password)) return null;
 
-                //Comparar las contrasenas
-                
-                return null;
+               //regresar el usuario sin el password
+               const { password: _, ...rest} = user
+
+               console.log({rest});
+               
+               return rest;
             },
           }),
     ]

@@ -6,11 +6,14 @@ import { IoCloseOutline, IoPersonOutline, IoLogOutOutline, IoSearchOutline, IoTi
 import { useUIStore } from '@/store';
 import clsx from 'clsx';
 import { logout } from '@/actions';
+import { useSession } from 'next-auth/react';
 
 export const SideBar = () => {
 
 const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen);
 const closeMenu = useUIStore(state => state.closeSideMenu);
+const {data: session} = useSession();
+
 
 
   return (
@@ -90,8 +93,9 @@ const closeMenu = useUIStore(state => state.closeSideMenu);
                     <span className='ml-3 text-xl '>Ordenes</span>
             </Link>
             <Link 
-            href="/"
+            href="/auth/login"
             className='flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all'
+            onClick={() => closeMenu()}
             >
                 <IoLogOutOutline 
                 size={30}

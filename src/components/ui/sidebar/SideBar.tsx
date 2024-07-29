@@ -5,8 +5,9 @@ import { IoCloseOutline, IoPersonOutline, IoLogOutOutline, IoSearchOutline, IoTi
 
 import { useUIStore } from '@/store';
 import clsx from 'clsx';
-import { logout } from '@/actions';
+//import { logout } from '@/actions';
 import { useSession } from 'next-auth/react';
+import {signOut} from 'next-auth/react';
 
 export const SideBar = () => {
 
@@ -116,7 +117,7 @@ const isAdmin = (session?.user.role === 'admin');
                 <button 
             
                 className='flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all'
-                onClick={() => logout()}
+                onClick={() => signOut()}
                 >
                 <IoLogOut 
                 size={30}

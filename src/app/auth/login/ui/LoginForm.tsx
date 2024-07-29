@@ -6,12 +6,12 @@ import { authenticate } from "@/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import clsx from "clsx";
 import { IoInformationOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const LoginForm = () => {
 
-  const router = useRouter();
+ // const router = useRouter();
     const [state, dispatch] = useFormState(
         authenticate,
         undefined,
@@ -20,7 +20,9 @@ export const LoginForm = () => {
       useEffect(() => {
         if (state === 'Success'){
           //redireccionar
-          router.replace('/');
+         // router.replace('/');
+           //este window hace un refresh del navegador web
+           window.location.replace('/')
         }
       }, [state]);
       

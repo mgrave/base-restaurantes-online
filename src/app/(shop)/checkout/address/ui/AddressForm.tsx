@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { Country } from "@/interfaces";
 import { useAddressStore } from "@/store";
 import { useEffect } from "react";
-import { setUserAddress } from "@/actions";
+import { deleteUserAddress, setUserAddress } from "@/actions";
 import { useSession } from "next-auth/react";
 
 type FormInputs = {
@@ -58,9 +58,10 @@ export const AddressForm = ({countries}: Props) => {
     if (rememberAddress) {
       //TODO: Server Action
       setUserAddress(restAddress, session!.user.id)
+    } else {
+      deleteUserAddress(session!.user.id);
     }
-    //TODO: Server Action
-    //taread
+    
   }
 
   

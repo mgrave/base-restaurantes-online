@@ -52,6 +52,52 @@ export const  placeOrder = async(producIds: ProductToOrder[], address: Address) 
 
         return totals;
     }, {subTotal: 0, tax: 0, total: 0})
-    console.log({subTotal, tax, total})
+   
+       //Crear la transacción de base de datos
+       const prismaTx = await prisma.$transaction(async(tx) => {
+
+        //paso 1. actualizar el stock de los productos
+
+
+        //paso 2. crear la orden ENCABEZADO - DETALLE
+        const order = await tx.order.create({
+            data: {
+                userId: userId,
+                itemsInOrder: itemsInOrder,
+                subTotal: subTotal,
+                tax: tax,
+                total: total,
+
+                OrderItem: {
+                    createMany: {
+                        data: producIds.map(p => ({
+                            quantity: p.quantity,
+                            productId: p.productId,
+                            price: products.find(product => product.id === p.productId)?.price ?? 0
+                        }))
+                    }
+                }
+            }
+        })
+
+        
+        //paso 3. Crear la direccion de la orden
+        const {country, ...restAddress} = address;
+        const orderAddress = await tx.orderAddress.create({
+            data: {
+                ...restAddress,
+                countryId: country,
+                orderId: order.id,
+            }
+        })
+
+
+        return {
+            updatedProducts: [],
+            order: order,
+            orderAddress: order,
+        }
+
+    })
 
 }

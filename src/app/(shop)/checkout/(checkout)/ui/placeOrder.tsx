@@ -4,12 +4,14 @@ import { placeOrder } from "@/actions";
 import { useAddressStore, useCartStore } from "@/store";
 import { currencyFormat, } from "@/utils";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const PlaceOrder = () => {
-
+    const router = useRouter();
     const [loaded, setLoaded] = useState(false);
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     //aqui tomaremos la informacion que viene de nuestro store
     const address = useAddressStore(state => state.address);
@@ -17,6 +19,7 @@ export const PlaceOrder = () => {
     const {itemsInCart, subTotal, tax, total} = useCartStore(state => state.getSumaryInformation());
 
     const cart = useCartStore(state => state.cart);
+    const clearCart = useCartStore(state => state.clearCart);
 
     useEffect(() => {
         setLoaded(true);
@@ -30,16 +33,16 @@ export const PlaceOrder = () => {
             productId: product.id,
             quantity: product.quantity,
         }))
-
-          //objetos a llamar
-          console.log({address, productsToOrder});
-
-         
+ 
         const resp = await placeOrder(productsToOrder, address)
-        console.log({resp});
-
-         setIsPlacingOrder(false);
-
+        if(!resp.ok){
+            setIsPlacingOrder(false);
+            setErrorMessage(resp.message);
+            return;
+        }
+        //despues de aqui todo ha salido bien, asi que tenemos que limpiar el carrito y redireccionar a la persona
+        clearCart();
+        router.replace('/orders/' + resp.order?.id)
     }
 
     if (!loaded){
@@ -89,7 +92,7 @@ export const PlaceOrder = () => {
             </span>
         </p>
 
-        {/* <p className="text-red-500">Error en la creación</p> */}
+        <p className="text-red-500">{errorMessage}</p>
 
         <button 
         onClick={onPlaceOrder}

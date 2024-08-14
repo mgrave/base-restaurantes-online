@@ -13,6 +13,7 @@ export * from './order/get-orders-by-users';
 export * from './country/get-countries';
 
 export * from './payments/set-transaction-id';
+export * from './payments/paypal-check-payment';
 
 export * from './product/get-product-by-slug';
 export * from './product/product-pagination';

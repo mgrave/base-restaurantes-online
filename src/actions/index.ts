@@ -12,6 +12,8 @@ export * from './order/get-orders-by-users';
 
 export * from './country/get-countries';
 
+export * from './payments/set-transaction-id';
+
 export * from './product/get-product-by-slug';
 export * from './product/product-pagination';
 export * from './product/get-stock-by-slug';

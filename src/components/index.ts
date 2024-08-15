@@ -18,3 +18,5 @@ export * from './ui/title/Title';
 export * from './providers/Providers';
 
 export * from './paypal/PaypalButton';
+
+export * from './orders/OrderStatus';

@@ -9,6 +9,7 @@ export * from './auth/register';
 export * from './order/place-order';
 export * from './order/get-order-by-id';
 export * from './order/get-orders-by-users';
+export * from './order/get-paginated-orders';
 
 export * from './country/get-countries';
 
@@ -18,3 +19,5 @@ export * from './payments/paypal-check-payment';
 export * from './product/get-product-by-slug';
 export * from './product/product-pagination';
 export * from './product/get-stock-by-slug';
+
+export * from './user/get-paginated-user';

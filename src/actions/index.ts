@@ -21,3 +21,4 @@ export * from './product/product-pagination';
 export * from './product/get-stock-by-slug';
 
 export * from './user/get-paginated-user';
+export * from './user/change-user-role';

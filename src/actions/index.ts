@@ -19,6 +19,7 @@ export * from './payments/paypal-check-payment';
 export * from './product/get-product-by-slug';
 export * from './product/product-pagination';
 export * from './product/get-stock-by-slug';
+export * from './product/create-update-product';
 
 export * from './user/get-paginated-user';
 export * from './user/change-user-role';

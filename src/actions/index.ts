@@ -22,3 +22,5 @@ export * from './product/get-stock-by-slug';
 
 export * from './user/get-paginated-user';
 export * from './user/change-user-role';
+
+export * from './category/get-categories';

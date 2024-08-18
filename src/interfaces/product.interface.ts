@@ -23,6 +23,6 @@ export interface CartProduct {
     size?: Size;
 }
 
-export type Category = 'specialities'|'kid'|'ceviche'|'cocktail'|'soup'|'sides'|'botanas';
+type Category = 'specialities'|'kid'|'ceviche'|'cocktail'|'soup'|'sides'|'botanas';
 export type Size = 'S'|'M'|'L';
 export type Type = 'fish'|'shrimp'|'octopus'|'oysters'|'side'|'appetizers'|'crab'|'seafood';

@@ -9,6 +9,7 @@ export * from './product/slideshow/ProductSlideshow';
 export * from './product/slideshow/ProductMobileSlideshow';
 export * from './product/stock-label/StockLabel';
 export * from './product/quantity-selector/QuantitySelector';
+export * from './product/product-image/ProductImage';
 
 export * from './ui/top-menu/TopMenu';
 export * from './ui/sidebar/SideBar';

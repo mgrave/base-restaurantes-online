@@ -52,12 +52,21 @@ export const createUpdateProduct = async(formData: FormData ) => {
                     }
                 }
             });
-            console.log({updatedProduct: product});
+          //  console.log({updatedProduct: product});
         } else {
-
+             //creando el producto
+             product = await prisma.product.create({
+                data: {
+                    ...rest,
+                    tags: {
+                        set: tagsArray
+                    }
+                }
+            })
         }
+        console.log({product});
         return {
-
+            product
         }
     })
 return {

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { createUpdateProduct } from "@/actions";
 
 interface Props {
-  product: Product & {ProductImage?: ProductImage[]};
+  product: Partial<Product> & {ProductImage?: ProductImage[]};
   categories: Category[];
 }
 
@@ -34,7 +34,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     } = useForm<FormInputs>({
         defaultValues : {
            ...product,
-           tags: product.tags.join(', '),
+           tags: product.tags?.join(', '),
            
         }
     });
@@ -44,8 +44,9 @@ export const ProductForm = ({ product, categories }: Props) => {
        const formData = new FormData();
 
        const {...productToSave} = data;
-
-       formData.append('id', product.id ?? '');
+       if (product.id) {
+        formData.append('id', product.id ?? '');
+        }
        formData.append('title', productToSave.title);
        formData.append('slug', productToSave.slug);
        formData.append('description', productToSave.description);
@@ -127,6 +128,11 @@ export const ProductForm = ({ product, categories }: Props) => {
 
       {/* Selector de tallas y fotos */}
       <div className="w-full">
+      <div className="flex flex-col mb-2">
+          <span>Inventario</span>
+          <input type="number" className="p-2 border rounded-md bg-gray-200" 
+          {...register('inStock', {required:true, min: 0})}/>
+        </div>
         {/* As checkboxes */}
         <div className="flex flex-col">
 

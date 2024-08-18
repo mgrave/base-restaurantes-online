@@ -23,6 +23,13 @@ export interface CartProduct {
     size?: Size;
 }
 
+export interface ProductImage {
+    id: number;
+    url: string;
+    productId?: string;
+}
+
+
 type Category = 'specialities'|'kid'|'ceviche'|'cocktail'|'soup'|'sides'|'botanas';
 export type Size = 'S'|'M'|'L';
 export type Type = 'fish'|'shrimp'|'octopus'|'oysters'|'side'|'appetizers'|'crab'|'seafood';

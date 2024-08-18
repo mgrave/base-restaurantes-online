@@ -65,7 +65,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "tostada",
             type: 'fish',
-            tags: ['sweatshirt'],
+            tags: ['fish'],
             title: "jarocho",
             gender: 'specialities'
         },
@@ -80,7 +80,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "ceviche_2",
             type: 'octopus',
-            tags: ['sweatshirt'],
+            tags: ['octopus'],
             title: "cocktail",
             gender: 'cocktail'
         },
@@ -95,7 +95,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "ceviche_1",
             type: 'shrimp',
-            tags: ['sweatshirt'],
+            tags: ['shrimp'],
             title: "ceviche de camaron",
             gender: 'ceviche'
         },
@@ -110,7 +110,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "kid_quesadilla",
             type: 'appetizers',
-            tags: ['sweatshirt'],
+            tags: ['appetizers'],
             title: "quesadilla",
             gender: 'kid'
         },
@@ -125,7 +125,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "soup_shrimp",
             type: 'seafood',
-            tags: ['sweatshirt'],
+            tags: ['seafood'],
             title: "caldo",
             gender: 'soup'
         },
@@ -140,7 +140,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "flan",
             type: 'side',
-            tags: ['sweatshirt'],
+            tags: ['side'],
             title: "flan",
             gender: 'sides'
         },
@@ -155,7 +155,7 @@ export const initialData: SeedData = {
             sizes: ['S','M','L',],
             slug: "guacamole",
             type: 'appetizers',
-            tags: ['sweatshirt'],
+            tags: ['appetizers'],
             title: "guacamole",
             gender: 'botanas'
         },

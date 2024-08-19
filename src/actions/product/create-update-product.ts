@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { Gender, Product } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const productSchema = z.object({
@@ -37,39 +38,56 @@ export const createUpdateProduct = async(formData: FormData ) => {
 
     const {id, ...rest} = product;
 
-    const prismaTx = await prisma.$transaction(async (tx) => {
-        let product : Product;
-        const tagsArray = rest.tags.split(',').map( tag => tag.trim().toLowerCase());
+    try {
+        const prismaTx = await prisma.$transaction(async (tx) => {
+            let product : Product;
+            const tagsArray = rest.tags.split(',').map( tag => tag.trim().toLowerCase());
+    
+            if (id) {
+                //actualizar
+                product = await prisma.product.update({
+                    where: {id},
+                    data: {
+                        ...rest,
+                        tags: {
+                            set: tagsArray
+                        }
+                    }
+                });
+              //  console.log({updatedProduct: product});
+            } else {
+                 //creando el producto
+                 product = await prisma.product.create({
+                    data: {
+                        ...rest,
+                        tags: {
+                            set: tagsArray
+                        }
+                    }
+                })
+            }
+            console.log({product});
+            return {
+                product
+            }
+        })
+         //TODO RevalidatePaths
+         revalidatePath('/damin/products');
+        revalidatePath(`/admin/product/${product.slug}`);
+        revalidatePath(`/product/${product.slug}`);
 
-        if (id) {
-            //actualizar
-            product = await prisma.product.update({
-                where: {id},
-                data: {
-                    ...rest,
-                    tags: {
-                        set: tagsArray
-                    }
-                }
-            });
-          //  console.log({updatedProduct: product});
-        } else {
-             //creando el producto
-             product = await prisma.product.create({
-                data: {
-                    ...rest,
-                    tags: {
-                        set: tagsArray
-                    }
-                }
-            })
+
+
+          //aqui viene toda la informacion si todo sale bien
+          return {
+            ok: true,
+            product: prismaTx.product,
         }
-        console.log({product});
+        
+    } catch (error) {
         return {
-            product
+             ok: false,
+            message: 'Revisar los logs, no se pudo actualizar/crear'
         }
-    })
-return {
-    ok: true
-}
+    }
 }

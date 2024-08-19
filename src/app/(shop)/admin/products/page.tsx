@@ -4,7 +4,7 @@ import { getPaginatedProductsWithImages } from '@/actions';
 // https://tailwindcomponents.com/component/hoverable-table
 import { Pagination, ProductImage, Title } from '@/components';
 import { currencyFormat } from '@/utils';
-import Image from 'next/image';
+
 
 import Link from 'next/link';
 

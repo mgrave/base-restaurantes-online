@@ -4,6 +4,7 @@ import { Category, Product, ProductImage } from "@/interfaces";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { createUpdateProduct } from "@/actions";
+import { useRouter } from "next/navigation";
 
 interface Props {
   product: Partial<Product> & {ProductImage?: ProductImage[]};
@@ -26,6 +27,8 @@ interface FormInputs {
 }
 
 export const ProductForm = ({ product, categories }: Props) => {
+
+    const router = useRouter();
 
     const {
         handleSubmit,
@@ -56,9 +59,13 @@ export const ProductForm = ({ product, categories }: Props) => {
        formData.append('categoryId', productToSave.categoryId);
        formData.append('gender', productToSave.gender);
 
-       const {ok} = await createUpdateProduct(formData);
+       const {ok, product: updatedProduct} = await createUpdateProduct(formData);
 
-       console.log({ok});
+       if (!ok) {
+        alert('Producto no se pudo actualizar');
+         return;
+       }
+       router.replace(`/admin/product/${updatedProduct?.slug}`)
 
     }
 

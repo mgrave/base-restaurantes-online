@@ -3,7 +3,7 @@
 import { Category, Product, ProductImage as ProductWithImage } from "@/interfaces";
 import { useForm } from "react-hook-form";
 
-import { createUpdateProduct } from "@/actions";
+import { createUpdateProduct, deleteProductImage } from "@/actions";
 import { useRouter } from "next/navigation";
 import { ProductImage, } from "@/components";
 
@@ -195,7 +195,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
                         <button 
                         type="button"
-                        onClick={() => console.log(image.id, image.url)}
+                        onClick={() => deleteProductImage(image.id, image.url)}
                         className="btn-danger w-full rounded-xl">
                             Eliminar
                         </button>
